@@ -19,7 +19,23 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="button.cpp" />
     <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="graphics\alpha.png" />
+    <Image Include="graphics\b2.jpg" />
+    <Image Include="graphics\b3.jpeg" />
+    <Image Include="graphics\b4.jpeg" />
+    <Image Include="graphics\beta.png" />
+    <Image Include="graphics\chain.png" />
+    <Image Include="graphics\fission.png" />
+    <Image Include="graphics\fusion.png" />
+    <Image Include="graphics\gamma.png" />
+    <Image Include="graphics\home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="button.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

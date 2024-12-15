@@ -13,10 +13,53 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Graphics">
+      <UniqueIdentifier>{a7fa34dc-2edd-4821-b203-0f1bc2b35daa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="button.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="graphics\alpha.png">
+      <Filter>Graphics</Filter>
+    </Image>
+    <Image Include="graphics\beta.png">
+      <Filter>Graphics</Filter>
+    </Image>
+    <Image Include="graphics\fission.png">
+      <Filter>Graphics</Filter>
+    </Image>
+    <Image Include="graphics\fusion.png">
+      <Filter>Graphics</Filter>
+    </Image>
+    <Image Include="graphics\gamma.png">
+      <Filter>Graphics</Filter>
+    </Image>
+    <Image Include="graphics\home.png">
+      <Filter>Graphics</Filter>
+    </Image>
+    <Image Include="graphics\b2.jpg">
+      <Filter>Graphics</Filter>
+    </Image>
+    <Image Include="graphics\b3.jpeg">
+      <Filter>Graphics</Filter>
+    </Image>
+    <Image Include="graphics\b4.jpeg">
+      <Filter>Graphics</Filter>
+    </Image>
+    <Image Include="graphics\chain.png">
+      <Filter>Graphics</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="button.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
