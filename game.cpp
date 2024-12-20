@@ -125,13 +125,13 @@ void drawHomeScreen()
     DrawTextureEx(background, position, 0.0f, scale.x, WHITE);
 
     // display the title
-    const char* title = "Atomic Physics Simulator";
-    int fontSize = 40;
+    const char* title = "Atomic\nPhysics\nSimulator";
+    int fontSize = 90;
     int screenWidth = GetScreenWidth();
     int textWidth = MeasureText(title, fontSize);
-    int titleX = (screenWidth - textWidth) / 2;
-    int titleY = 20;
-    DrawText(title, titleX, titleY, fontSize, RAYWHITE);
+    int titleX = (screenWidth - textWidth - 500) / 2;
+    int titleY = 190;
+    DrawText(title, titleX, titleY, fontSize, BLACK);
 
     // draw all the buttons
     fissionButton->Draw();
