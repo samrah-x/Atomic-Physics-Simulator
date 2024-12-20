@@ -1,6 +1,10 @@
 #include "button.hpp"
+#include <functional>
 
-Rectangle rect;
+using namespace std;
+
+function<void()> onPressAction; // Store action when button is pressed
+
 
 Button::Button(const char* imagePath, Vector2 imagePosition, float scale)
 {
@@ -50,9 +54,32 @@ void Button::Draw()
 	}
 }
 
-bool Button::isPressed(Vector2 mousePos, bool mousePressed)
-{
-	if (CheckCollisionPointRec(mousePos, rect) && mousePressed)
+bool Button::isPressed(Vector2 mousePos, bool mousePressed) {
+	if (CheckCollisionPointRec(mousePos, rect) && mousePressed) {
+		//if (onPressAction) {
+		//	onPressAction(); // Perform the associated action coded later
+		//}
 		return true;
+	}
+	return false;
+}
+
+// Set action for the button press
+void Button::setOnPressAction(function<void()> action) {
+	onPressAction = action;
+}
+
+void Button::press() {
+	if (onPressAction) {
+		onPressAction();
+	}
+}
+
+
+// Function to update the cursor based on hover state
+bool Button::updateCursor(Vector2 mousePos) {
+	if (CheckCollisionPointRec(mousePos, rect)) {
+		return true; // Cursor is over this button
+	}
 	return false;
 }
