@@ -27,6 +27,18 @@
     <ClCompile Include="game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="fissionmenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mainMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="atom.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="neutron.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="graphics\alpha.png">
@@ -59,12 +71,39 @@
     <Image Include="graphics\chain.png">
       <Filter>Graphics</Filter>
     </Image>
+    <Image Include="graphics\Uranium236.png">
+      <Filter>Graphics</Filter>
+    </Image>
+    <Image Include="graphics\Krypton.png">
+      <Filter>Graphics</Filter>
+    </Image>
+    <Image Include="graphics\Barium.png">
+      <Filter>Graphics</Filter>
+    </Image>
+    <Image Include="graphics\neutron.png">
+      <Filter>Graphics</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="button.hpp">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="game.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="menu.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fissionMenu.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mainMenu.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="atom.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="neutron.hpp">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

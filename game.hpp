@@ -2,20 +2,15 @@
 #define GAME_HPP
 
 #include "raylib.h"
-#include "button.hpp"
+#include <memory>  // For std::unique_ptr
+#include "Menu.hpp"  // The base class for all menus
+#include "MainMenu.hpp"  // Include the header for MainMenu
 
-void init();                          // Function to initialize the game
-void runGame();                        // Main game loop
-void drawHomeScreen();                 // Draw the home screen
-void updateButtons(Vector2 mousePos, bool mousePressed);  // Update button logic
+// Global pointer to the current menu
+extern std::unique_ptr<Menu> currentMenu;
 
-// Global variables
-extern Button* fissionButton;
-extern Button* fusionButton;
-extern Button* chainRxnButton;
-extern Button* alphaDecayButton;
-extern Button* betaDecayButton;
-extern Button* gammaDecayButton;
-extern Button* homeButton;
+// Function declarations
+void init();
+void runGame();
 
 #endif // GAME_HPP

@@ -19,25 +19,38 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="atom.cpp" />
     <ClCompile Include="button.cpp" />
+    <ClCompile Include="fissionmenu.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="mainMenu.cpp" />
+    <ClCompile Include="neutron.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="graphics\alpha.png" />
     <Image Include="graphics\b2.jpg" />
     <Image Include="graphics\b3.jpeg" />
     <Image Include="graphics\b4.jpeg" />
+    <Image Include="graphics\Barium.png" />
     <Image Include="graphics\beta.png" />
     <Image Include="graphics\chain.png" />
     <Image Include="graphics\fission.png" />
     <Image Include="graphics\fusion.png" />
     <Image Include="graphics\gamma.png" />
     <Image Include="graphics\home.png" />
+    <Image Include="graphics\Krypton.png" />
+    <Image Include="graphics\neutron.png" />
+    <Image Include="graphics\Uranium236.png" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="atom.hpp" />
     <ClInclude Include="button.hpp" />
+    <ClInclude Include="fissionMenu.hpp" />
     <ClInclude Include="game.hpp" />
+    <ClInclude Include="mainMenu.hpp" />
+    <ClInclude Include="menu.hpp" />
+    <ClInclude Include="neutron.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
