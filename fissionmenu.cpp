@@ -2,13 +2,12 @@
 #include "fissionMenu.hpp"
 #include "mainMenu.hpp"
 
-Button* homeButton = nullptr;
 
 
 fissionMenu::fissionMenu()
 {
     homeButton = new Button{ "Graphics/home.png", {1150, 550}, 0.1 };
-    
+    currentMenu->reset();
     /*atoms.push_back(Atom({ 100, 100 }, "Graphics/Uranium236.png"));
     neutrons.push_back(Neutron({ 200, 150 }, "Graphics/neutron.png"));*/
 }
@@ -21,6 +20,7 @@ fissionMenu::~fissionMenu()
 
 void fissionMenu::update(Vector2 mousePosition, bool mousePressed) 
 {
+
     // updating if cursor is on home button
     bool isHoveringAnyButton = false;
     if (homeButton->updateCursor(mousePosition)) isHoveringAnyButton = true;
@@ -56,7 +56,9 @@ void fissionMenu::update(Vector2 mousePosition, bool mousePressed)
 
 void fissionMenu::render()
 {
-    ClearBackground(BLACK);
+    //currentMenu->updateSimulation(GetFrameTime());
+
+    ClearBackground(RAYWHITE);
 
     // Draw background image
     Vector2 position = { 0.0f, 0.0f };
@@ -75,6 +77,14 @@ void fissionMenu::render()
     // draw home button
     homeButton->Draw();
 
+    currentMenu->draw();
+
+    DrawText("Press R to reset simulation", 10, 10, 20, DARKGRAY);
+
+    if (IsKeyPressed(KEY_R)) {
+        currentMenu->reset();
+    }
+
     //// Render atoms
     //for (auto& atom : atoms) 
     //    atom.draw();
@@ -82,4 +92,108 @@ void fissionMenu::render()
     //// Render neutrons
     //for (auto& neutron : neutrons) 
     //    neutron.draw();        
+}
+
+void fissionMenu::updateSimulation(float deltaTime)
+{
+    if (!collisionOccurred) {
+        // Update neutron position
+        neutron.position.x += neutron.velocity.x * deltaTime;
+        neutron.position.y += neutron.velocity.y * deltaTime;
+
+        // Check for collision
+        float distance = sqrt(pow(neutron.position.x - uranium.position.x, 2) +
+            pow(neutron.position.y - uranium.position.y, 2));
+
+        if (distance < (uranium.radius + neutron.radius) && neutron.active) {
+            collisionOccurred = true;
+            neutron.active = false;
+            vibrationTime = 0;
+        }
+    }
+    else {
+        vibrationTime += deltaTime;
+
+        if (vibrationTime < VIBRATION_DURATION) {
+            // Vibration phase
+            uranium.vibrationPhase += 10.0f * deltaTime;
+            uranium.vibrationAmplitude = 10.0f * (1.0f - vibrationTime / VIBRATION_DURATION);
+        }
+        else if (uranium.active) {
+            // Split the uranium
+            uranium.active = false;
+
+            // Create two fission products
+            Particle fragment1 = {
+                uranium.position,
+                {-SPLIT_VELOCITY, 0},
+                uranium.radius / 2,
+                ORANGE,
+                true,
+                0,
+                0
+            };
+
+            Particle fragment2 = {
+                uranium.position,
+                {SPLIT_VELOCITY, 0},
+                uranium.radius / 2,
+                ORANGE,
+                true,
+                0,
+                0
+            };
+
+            fissionProducts.push_back(fragment1);
+            fissionProducts.push_back(fragment2);
+        }
+
+        // Update fission products
+        for (auto& product : fissionProducts) {
+            product.position.x += product.velocity.x * deltaTime;
+            product.position.y += product.velocity.y * deltaTime;
+        }
+    }
+}
+
+void fissionMenu::draw()
+{
+    if (neutron.active) {
+        DrawCircleV(neutron.position, neutron.radius, neutron.color);
+    }
+
+    if (uranium.active) {
+        Vector2 vibPos = uranium.position;
+        if (collisionOccurred) {
+            vibPos.x += sin(uranium.vibrationPhase) * uranium.vibrationAmplitude;
+        }
+        DrawCircleV(vibPos, uranium.radius, uranium.color);
+    }
+
+    for (const auto& product : fissionProducts) {
+        DrawCircleV(product.position, product.radius, product.color);
+    }
+}
+
+void fissionMenu::reset() 
+{
+    // Initialize uranium atom
+    uranium.position = { 600, 300 };
+    uranium.velocity = { 0, 0 };
+    uranium.radius = 40.0f;
+    uranium.color = BLUE;
+    uranium.active = true;
+    uranium.vibrationPhase = 0;
+    uranium.vibrationAmplitude = 0;
+
+    // Initialize neutron
+    neutron.position = { 100, 300 };
+    neutron.velocity = { 200, 0 };
+    neutron.radius = 9.0f;
+    neutron.color = RED;
+    neutron.active = true;
+
+    fissionProducts.clear();
+    collisionOccurred = false;
+    vibrationTime = 0;
 }

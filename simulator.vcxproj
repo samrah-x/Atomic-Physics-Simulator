@@ -19,10 +19,15 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="alphaDecayMenu.cpp" />
     <ClCompile Include="atom.cpp" />
+    <ClCompile Include="betaDecayMenu.cpp" />
     <ClCompile Include="button.cpp" />
+    <ClCompile Include="chainRxnMenu.cpp" />
     <ClCompile Include="fissionmenu.cpp" />
+    <ClCompile Include="fusionmenu.cpp" />
     <ClCompile Include="game.cpp" />
+    <ClCompile Include="gammaDecayMenu.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mainMenu.cpp" />
     <ClCompile Include="neutron.cpp" />
@@ -44,10 +49,15 @@
     <Image Include="graphics\Uranium236.png" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="alphaDecayMenu.hpp" />
     <ClInclude Include="atom.hpp" />
+    <ClInclude Include="betaDecayMenu.hpp" />
     <ClInclude Include="button.hpp" />
+    <ClInclude Include="chainRxnMenu.hpp" />
     <ClInclude Include="fissionMenu.hpp" />
+    <ClInclude Include="fusionmenu.hpp" />
     <ClInclude Include="game.hpp" />
+    <ClInclude Include="gammaDecayMenu.hpp" />
     <ClInclude Include="mainMenu.hpp" />
     <ClInclude Include="menu.hpp" />
     <ClInclude Include="neutron.hpp" />

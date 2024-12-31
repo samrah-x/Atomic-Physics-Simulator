@@ -5,10 +5,24 @@
 #include <memory>
 #include "button.hpp"
 
+// Structure for particles
+struct Particle {
+    Vector2 position;
+    Vector2 velocity;
+    float radius;
+    Color color;
+    bool active;
+    float vibrationPhase;
+    float vibrationAmplitude;
+};
+
 class Menu {
 public:
     virtual void update(Vector2 mousePosition, bool mousePressed) = 0;
     virtual void render() = 0;
+    virtual void updateSimulation(float deltaTime) = 0;
+    virtual void draw() = 0;
+    virtual void reset() = 0;
     virtual ~Menu() {}
 };
 

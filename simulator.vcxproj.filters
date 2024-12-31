@@ -39,6 +39,21 @@
     <ClCompile Include="neutron.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="fusionmenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="chainRxnMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="alphaDecayMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="betaDecayMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gammaDecayMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="graphics\alpha.png">
@@ -104,6 +119,21 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="neutron.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fusionmenu.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="chainRxnMenu.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="alphaDecayMenu.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="betaDecayMenu.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gammaDecayMenu.hpp">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

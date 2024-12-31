@@ -15,11 +15,13 @@ void runGame() {
         Vector2 mousePosition = GetMousePosition();
         bool mousePressed = IsMouseButtonPressed(MOUSE_BUTTON_LEFT);
 
+        
         BeginDrawing();
         ClearBackground(BLACK);
 
         if (currentMenu) {
             //SetMouseCursor(MOUSE_CURSOR_DEFAULT);
+            currentMenu->updateSimulation(GetFrameTime());
             currentMenu->render();
             currentMenu->update(mousePosition, mousePressed);
             

@@ -15,6 +15,9 @@ public:
 
     void update(Vector2 mousePosition, bool mousePressed) override;
     void render() override;
+    void updateSimulation(float deltaTime) override;
+    void draw() override;
+    void reset() override;
 };
 
 extern Button* fissionButton;

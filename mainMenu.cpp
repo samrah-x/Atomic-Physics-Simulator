@@ -1,5 +1,10 @@
 #include "MainMenu.hpp"
 #include "fissionMenu.hpp"
+#include "fusionMenu.hpp"
+#include "chainRxnMenu.hpp"
+#include "alphaDecayMenu.hpp"
+#include "betaDecayMenu.hpp"
+#include "gammaDecayMenu.hpp"
 #include <iostream>
 
 // Define the variables here, not just declare them
@@ -22,53 +27,33 @@ MainMenu::MainMenu() {
 
        // Set up the action when each button is pressed
     fissionButton->setOnPressAction([]() {
-        // Action for fission button (e.g., open a menu or perform an operation)
         std::cout << "Opening Fission Menu..." << std::endl;
-        //delete currentMenu;       // Deletes the existing menu
         currentMenu = std::make_unique<fissionMenu>();
-        if (currentMenu) 
-        {
-            std::cout << "Simulation is running" << std::endl;
-        }
-        else 
-        {
-            std::cerr << "Error: currentMenu is null!" << std::endl;
-        }
         });
 
     fusionButton->setOnPressAction([]() {
-        // Action for fusion button
         std::cout << "Opening Fusion Menu..." << std::endl;
-        //delete currentMenu;       // Deletes the existing menu
-        //currentMenu = new FusionMenu();  // Assigns a new menu
+        currentMenu = std::make_unique<FusionMenu>();
         });
 
     chainRxnButton->setOnPressAction([]() {
-        // Action for fusion button
-        std::cout << "Opening Chain Rxn Menu..." << std::endl;
-        //delete currentMenu;       // Deletes the existing menu
-        //currentMenu = new ChainRxnMenu();  // Assigns a new menu
+        std::cout << "Opening Chain Reaction Menu..." << std::endl;
+        currentMenu = std::make_unique<ChainRxnMenu>();
         });
 
     alphaDecayButton->setOnPressAction([]() {
-        // Action for fusion button
         std::cout << "Opening Alpha Decay Menu..." << std::endl;
-        //delete currentMenu;       // Deletes the existing menu
-        //currentMenu = new AlphaDecayMenu();  // Assigns a new menu
+        currentMenu = std::make_unique<AlphaDecayMenu>();
         });
 
     betaDecayButton->setOnPressAction([]() {
-        // Action for fusion button
         std::cout << "Opening Beta Decay Menu..." << std::endl;
-        //delete currentMenu;       // Deletes the existing menu
-        //currentMenu = new BetaDecayMenu();  // Assigns a new menu
+        currentMenu = std::make_unique<BetaDecayMenu>();
         });
 
     gammaDecayButton->setOnPressAction([]() {
-        // Action for fusion button
         std::cout << "Opening Gamma Decay Menu..." << std::endl;
-        //delete currentMenu;       // Deletes the existing menu
-        //currentMenu = new GammaDecayMenu();  // Assigns a new menu
+        currentMenu = std::make_unique<GammaDecayMenu>();
         });
 
 }
@@ -137,4 +122,16 @@ void MainMenu::render() {
     alphaDecayButton->Draw();
     betaDecayButton->Draw();
     gammaDecayButton->Draw();
+}
+
+void MainMenu::updateSimulation(float deltaTime)
+{
+}
+
+void MainMenu::draw()
+{
+}
+
+void MainMenu::reset()
+{
 }
