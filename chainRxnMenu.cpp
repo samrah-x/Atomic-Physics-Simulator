@@ -43,6 +43,11 @@ void ChainRxnMenu::update(Vector2 mousePosition, bool mousePressed) {
         SetMouseCursor(MOUSE_CURSOR_DEFAULT);
     }
 
+    if (startButton && startButton->isPressed(mousePosition, mousePressed)) {
+        std::cout << "Start button pressed, starting simulation." << std::endl;
+        simulationStarted = true;
+    }
+
     if (homeButton && homeButton->isPressed(mousePosition, mousePressed)) {
         std::cout << "Home button pressed, switching to main menu." << std::endl;
         // Transition to the main menu
@@ -50,10 +55,6 @@ void ChainRxnMenu::update(Vector2 mousePosition, bool mousePressed) {
         //currentMenu->reset();
     }
 
-    if (startButton && startButton->isPressed(mousePosition, mousePressed)) {
-        std::cout << "Start button pressed, starting simulation." << std::endl;
-        simulationStarted = true;
-    }
 }
 
 // Render function for ChainRxnMenu
@@ -75,14 +76,10 @@ void ChainRxnMenu::render() {
     DrawText(title, titleX, titleY, fontSize, BLACK);
 
     // Draw buttons
-    if (homeButton) homeButton->Draw();
-    if (startButton) startButton->Draw();
-
-    // Draw the current menu if it exists
-    if (currentMenu) {
-        std::cout << "Rendering current menu." << std::endl;
-        currentMenu->draw();
-    }
+    homeButton->Draw();
+    startButton->Draw();
+    currentMenu->draw();
+    
 
     DrawText("Press R to reset simulation", 10, 10, 20, DARKGRAY);
 

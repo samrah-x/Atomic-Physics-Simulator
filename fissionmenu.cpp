@@ -9,6 +9,7 @@ fissionMenu::fissionMenu()
     // Initialize buttons using smart pointers
     homeButton = std::make_unique<Button>("Graphics/home.png", Vector2{ 1150, 550 }, 0.1f);
     startButton = std::make_unique<Button>("Graphics/start.png", Vector2{ 1150, 450 }, 0.1f);
+    simulationStarted = false;
     currentMenu->reset();
     
 }
@@ -24,12 +25,17 @@ void fissionMenu::update(Vector2 mousePosition, bool mousePressed)
     // updating if cursor is on home button
     bool isHoveringAnyButton = false;
     if (homeButton->updateCursor(mousePosition)) isHoveringAnyButton = true;
+    if (startButton->updateCursor(mousePosition)) isHoveringAnyButton = true;
     // Set cursor based on hover state
     if (isHoveringAnyButton) {
         SetMouseCursor(MOUSE_CURSOR_POINTING_HAND);
     }
     else {
         SetMouseCursor(MOUSE_CURSOR_DEFAULT);
+    }
+    
+    if (startButton->isPressed(mousePosition, mousePressed)) {
+        simulationStarted = true;
     }
 
     // going to main menu if home button pressed
@@ -82,7 +88,7 @@ void fissionMenu::render()
     DrawText("Press R to reset simulation", 10, 10, 20, DARKGRAY);
 
     if (IsKeyPressed(KEY_R)) {
-        currentMenu->reset();
+        reset();
     }
 
     //// Render atoms
@@ -96,6 +102,8 @@ void fissionMenu::render()
 
 void fissionMenu::updateSimulation(float deltaTime)
 {
+    if (!simulationStarted) return; // Do not update if simulation has not started
+
     if (!collisionOccurred) {
         // Update neutron position
         neutron.position.x += neutron.velocity.x * deltaTime;
