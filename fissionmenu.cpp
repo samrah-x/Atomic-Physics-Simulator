@@ -1,18 +1,27 @@
 // FissionMenu.cpp
 #include "fissionMenu.hpp"
 #include "mainMenu.hpp"
+#include <iostream>
 
 
 
-fissionMenu::fissionMenu()
-{
+fissionMenu::fissionMenu() {
+    // Initialize particles
+    uranium = { {300, 300}, {0, 0}, 40.0f, BLUE, true, 0, 0 };
+    neutron = { {100, 300}, {200, 0}, 9.0f, RED, true, 0, 0 };
+
+    collisionOccurred = false;
+    vibrationTime = 0;
+
     // Initialize buttons using smart pointers
     homeButton = std::make_unique<Button>("Graphics/home.png", Vector2{ 1150, 550 }, 0.1f);
     startButton = std::make_unique<Button>("Graphics/start.png", Vector2{ 1150, 450 }, 0.1f);
+
     simulationStarted = false;
-    currentMenu->reset();
-    
+
+    std::cout << "FissionMenu initialized." << std::endl;
 }
+
 
 fissionMenu::~fissionMenu()
 {
@@ -36,6 +45,7 @@ void fissionMenu::update(Vector2 mousePosition, bool mousePressed)
     
     if (startButton->isPressed(mousePosition, mousePressed)) {
         simulationStarted = true;
+        updateSimulation(GetFrameTime());
     }
 
     // going to main menu if home button pressed
@@ -204,4 +214,5 @@ void fissionMenu::reset()
     fissionProducts.clear();
     collisionOccurred = false;
     vibrationTime = 0;
+    simulationStarted = false;
 }
