@@ -6,16 +6,16 @@
 
 fissionMenu::fissionMenu()
 {
-    homeButton = new Button{ "Graphics/home.png", {1150, 550}, 0.1 };
+    // Initialize buttons using smart pointers
+    homeButton = std::make_unique<Button>("Graphics/home.png", Vector2{ 1150, 550 }, 0.1f);
+    startButton = std::make_unique<Button>("Graphics/start.png", Vector2{ 1150, 450 }, 0.1f);
     currentMenu->reset();
-    /*atoms.push_back(Atom({ 100, 100 }, "Graphics/Uranium236.png"));
-    neutrons.push_back(Neutron({ 200, 150 }, "Graphics/neutron.png"));*/
+    
 }
 
 fissionMenu::~fissionMenu()
 {
-    // clean up
-    delete homeButton;
+    // no clean up for smart pointer
 }
 
 void fissionMenu::update(Vector2 mousePosition, bool mousePressed) 
@@ -76,7 +76,7 @@ void fissionMenu::render()
 
     // draw home button
     homeButton->Draw();
-
+    startButton->Draw();
     currentMenu->draw();
 
     DrawText("Press R to reset simulation", 10, 10, 20, DARKGRAY);

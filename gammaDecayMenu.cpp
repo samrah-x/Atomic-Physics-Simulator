@@ -6,7 +6,8 @@ inline Vector2 Vector2Subtract(Vector2 v1, Vector2 v2) {
     return Vector2 { v1.x - v2.x, v1.y - v2.y };
 }
 
-//Button* homeButton = nullptr;
+Button* homeButton = nullptr;
+//Button* startButton = nullptr;
 
 GammaDecayMenu::GammaDecayMenu() {
     parentNucleus = { {600, 300}, {0, 0}, 40.0f, BLUE, true, 0, 0 };

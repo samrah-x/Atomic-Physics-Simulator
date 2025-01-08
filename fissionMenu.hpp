@@ -28,7 +28,10 @@ private:
     float vibrationTime;
     const float VIBRATION_DURATION = 1.0f;
     const float SPLIT_VELOCITY = 200.0f;
-    Button* homeButton = nullptr;
+    std::unique_ptr<Button> homeButton;
+    std::unique_ptr<Button> startButton;
+    bool simulationStarted;
 };
 
 #endif // FISSION_MENU_HPP
+    

@@ -2,6 +2,7 @@
 #ifndef CHAIN_RXN_MENU_HPP
 #define CHAIN_RXN_MENU_HPP
 
+#include "raylib.h"
 #include "menu.hpp"  
 #include <vector>
 
@@ -21,7 +22,10 @@ private:
     std::vector<Particle> fissionProducts;
     bool collisionOccurred;
     int chainCount;
-    Button* homeButton = nullptr;
+    bool simulationStarted;
+    std::unique_ptr<Button> homeButton;
+    std::unique_ptr<Button> startButton;
 };
+
 
 #endif // CHAIN_RXN_MENU_HPP

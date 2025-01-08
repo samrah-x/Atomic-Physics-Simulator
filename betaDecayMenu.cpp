@@ -2,6 +2,7 @@
 #include "mainMenu.hpp"
 
 //Button* homeButton = nullptr;
+//Button* startDecayButton = nullptr;
 
 BetaDecayMenu::BetaDecayMenu() {
     parentNucleus = { {500, 300}, {0, 0}, 40.0f, BLUE, true, 0, 0 };

@@ -56,6 +56,7 @@ MainMenu::MainMenu() {
         currentMenu = std::make_unique<GammaDecayMenu>();
         });
 
+    std::cout << "MainMenu initialized" << std::endl;
 }
 
 MainMenu::~MainMenu() {
@@ -67,10 +68,13 @@ MainMenu::~MainMenu() {
     delete betaDecayButton;
     delete gammaDecayButton;
     //delete homeButton;
+    std::cout << "MainMenu deconstructed" << std::endl;
+
 }
 
 void MainMenu::update(Vector2 mousePosition, bool mousePressed) {
     bool isHoveringAnyButton = false;
+    std::cout << "MainMenu update" << std::endl;
 
     // Update cursor for each button
     if (fissionButton->updateCursor(mousePosition)) isHoveringAnyButton = true;
@@ -99,6 +103,8 @@ void MainMenu::update(Vector2 mousePosition, bool mousePressed) {
 }
 
 void MainMenu::render() {
+    std::cout << "MainMenu rendered" << std::endl;
+
     ClearBackground(BLACK);
 
     // Draw background image

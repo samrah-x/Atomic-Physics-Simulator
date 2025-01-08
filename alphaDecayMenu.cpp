@@ -2,6 +2,7 @@
 #include "mainMenu.hpp"
 
 //Button* homeButton = nullptr;
+//Button* startDecayButton = nullptr;
 
 AlphaDecayMenu::AlphaDecayMenu() {
     // Initialize parent nucleus and alpha particle
