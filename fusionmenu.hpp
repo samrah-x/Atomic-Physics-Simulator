@@ -17,12 +17,20 @@ public:
     void reset() override;
 
 private:
-    Particle hydrogen1;
-    Particle hydrogen2;
-    std::vector<Particle> fusionProducts;
-    std::vector<Particle> emittedNeutrons;
+    Particl deutrium;
+    Particl tritium;
+    //Particl neutron;
+    //Particl helium;
+    Texture2D deutriumTexture;
+    Texture2D tritiumTexture;
+    Texture2D heliumTexture;
+    Texture2D neutronTexture;
+    std::vector<Particl> fusionProducts;
+    std::vector<Particl> emittedNeutrons;
     bool collisionOccurred;
-    Button* homeButton = nullptr;
+    std::unique_ptr<Button> homeButton;
+    std::unique_ptr<Button> startButton;
+    bool simulationStarted;
 };
 
 #endif // FUSION_MENU_HPP

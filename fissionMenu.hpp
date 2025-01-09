@@ -21,9 +21,10 @@ public:
     void reset() override;
 
 private:
-    Particle uranium;
-    Particle neutron;
-    std::vector<Particle> fissionProducts;
+    Particl uranium;
+    Particl neutron;
+    std::vector<Particl> fissionProducts;
+    std::vector<Particl> neutrons; 
     bool collisionOccurred;
     float vibrationTime;
     const float VIBRATION_DURATION = 1.0f;
@@ -31,6 +32,10 @@ private:
     std::unique_ptr<Button> homeButton;
     std::unique_ptr<Button> startButton;
     bool simulationStarted;
+    Texture2D uraniumTexture;
+    Texture2D neutronTexture;
+    Texture2D fragment1Texture;
+    Texture2D fragment2Texture;
 };
 
 #endif // FISSION_MENU_HPP

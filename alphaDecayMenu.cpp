@@ -11,25 +11,32 @@ AlphaDecayMenu::AlphaDecayMenu() {
     decayStarted = false;
     decayOccurred = false;
     isDragging = false;
-    startDecayButton = new Button("Graphics/start.png", { 1000, 600 }, 0.5f);
-    homeButton = new Button{ "Graphics/home.png", {1150, 550}, 0.1 };
+    // Initialize buttons using smart pointers
+    homeButton = std::make_unique<Button>("Graphics/home.png", Vector2{ 1150, 550 }, 0.1f);
+    startButton = std::make_unique<Button>("Graphics/start.png", Vector2{ 1150, 450 }, 0.1f);
+
+    simulationStarted = false;
     currentMenu->reset();
 }
 
 AlphaDecayMenu::~AlphaDecayMenu() {
-    // Clean up 
-    delete homeButton;
-    delete startDecayButton;
+    // no need for clean up for smart pointers
 }
 
 void AlphaDecayMenu::update(Vector2 mousePosition, bool mousePressed) {
     bool isHoveringAnyButton = false;
     if (homeButton->updateCursor(mousePosition)) isHoveringAnyButton = true;
+    if (startButton->updateCursor(mousePosition)) isHoveringAnyButton = true;
     if (isHoveringAnyButton) {
         SetMouseCursor(MOUSE_CURSOR_POINTING_HAND);
     }
     else {
         SetMouseCursor(MOUSE_CURSOR_DEFAULT);
+    }
+
+    if (startButton->isPressed(mousePosition, mousePressed)) {
+        simulationStarted = true;
+        updateSimulation(GetFrameTime());
     }
 
     if (homeButton->isPressed(mousePosition, mousePressed)) {
@@ -43,10 +50,6 @@ void AlphaDecayMenu::update(Vector2 mousePosition, bool mousePressed) {
     if (isDragging) {
         parentNucleus.position = { mousePosition.x - dragOffset.x, mousePosition.y - dragOffset.y };
         if (!mousePressed) isDragging = false;
-    }
-
-    if (startDecayButton->isPressed(mousePosition, mousePressed)) {
-        decayStarted = true;
     }
 }
 
@@ -68,7 +71,7 @@ void AlphaDecayMenu::render() {
 
     // draw home button
     homeButton->Draw();
-
+    startButton->Draw();
     currentMenu->draw();
 
     if (parentNucleus.active) {
@@ -77,16 +80,17 @@ void AlphaDecayMenu::render() {
     if (alphaParticle.active) {
         DrawCircleV(alphaParticle.position, alphaParticle.radius, alphaParticle.color);
     }
-    startDecayButton->Draw();
 
     DrawText("Press R to reset simulation", 10, 10, 20, DARKGRAY);
 
     if (IsKeyPressed(KEY_R)) {
-        currentMenu->reset();
+        reset();
     };
 }
 
 void AlphaDecayMenu::updateSimulation(float deltaTime) {
+    if (!simulationStarted) return; // Do not update if simulation has not started
+
     if (decayStarted && !decayOccurred) {
         alphaParticle.active = true;
         alphaParticle.position.x += alphaParticle.velocity.x * deltaTime;
@@ -111,4 +115,5 @@ void AlphaDecayMenu::reset() {
     decayStarted = false;
     decayOccurred = false;
     isDragging = false;
+    simulationStarted = false;
 }

@@ -21,8 +21,9 @@ private:
     bool decayOccurred;
     bool isDragging;
     Vector2 dragOffset;
-    Button* startDecayButton = nullptr;
-    Button* homeButton = nullptr;
+    std::unique_ptr<Button> homeButton;
+    std::unique_ptr<Button> startButton;
+    bool simulationStarted;
 };
 
 #endif // BETA_DECAY_MENU_HPP

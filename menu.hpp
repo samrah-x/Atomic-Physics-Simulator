@@ -15,7 +15,16 @@ struct Particle {
     float vibrationPhase;
     float vibrationAmplitude;
 };
-
+// Structure for particles
+struct Particl {
+    Vector2 position;
+    Vector2 velocity;
+    float radius;
+    Texture2D texture;
+    bool active;
+    float vibrationPhase;
+    float vibrationAmplitude;
+};
 class Menu {
 public:
     virtual void update(Vector2 mousePosition, bool mousePressed) = 0;

@@ -10,25 +10,32 @@ BetaDecayMenu::BetaDecayMenu() {
     decayStarted = false;
     decayOccurred = false;
     isDragging = false;
-    startDecayButton = new Button("Graphics/start.png", { 1000, 600 }, 0.5f);
-    homeButton = new Button{ "Graphics/home.png", {1150, 550}, 0.1 };
+    // Initialize buttons using smart pointers
+    homeButton = std::make_unique<Button>("Graphics/home.png", Vector2{ 1150, 550 }, 0.1f);
+    startButton = std::make_unique<Button>("Graphics/start.png", Vector2{ 1150, 450 }, 0.1f);
+
+    simulationStarted = false;
     currentMenu->reset();
 }
 
 BetaDecayMenu::~BetaDecayMenu() {
-    // Clean up 
-    delete homeButton;
-    delete startDecayButton;
+    // no cleanup needed
 }
 
 void BetaDecayMenu::update(Vector2 mousePosition, bool mousePressed) {
     bool isHoveringAnyButton = false;
     if (homeButton->updateCursor(mousePosition)) isHoveringAnyButton = true;
+    if (startButton->updateCursor(mousePosition)) isHoveringAnyButton = true;
     if (isHoveringAnyButton) {
         SetMouseCursor(MOUSE_CURSOR_POINTING_HAND);
     }
     else {
         SetMouseCursor(MOUSE_CURSOR_DEFAULT);
+    }
+
+    if (startButton->isPressed(mousePosition, mousePressed)) {
+        simulationStarted = true;
+        updateSimulation(GetFrameTime());
     }
 
     if (homeButton->isPressed(mousePosition, mousePressed)) {
@@ -45,9 +52,6 @@ void BetaDecayMenu::update(Vector2 mousePosition, bool mousePressed) {
         if (!mousePressed) isDragging = false;
     }
 
-    if (startDecayButton->isPressed(mousePosition, mousePressed)) {
-        decayStarted = true;
-    }
 }
 
 void BetaDecayMenu::render() {
@@ -68,7 +72,7 @@ void BetaDecayMenu::render() {
 
     // draw home button
     homeButton->Draw();
-
+    startButton->Draw();
     currentMenu->draw();
 
     if (parentNucleus.active) {
@@ -77,16 +81,17 @@ void BetaDecayMenu::render() {
     if (betaParticle.active) {
         DrawCircleV(betaParticle.position, betaParticle.radius, betaParticle.color);
     }
-    startDecayButton->Draw();
 
     DrawText("Press R to reset simulation", 10, 10, 20, DARKGRAY);
 
     if (IsKeyPressed(KEY_R)) {
-        currentMenu->reset();
+        reset();
     }
 }
 
 void BetaDecayMenu::updateSimulation(float deltaTime) {
+    if (!simulationStarted) return; // Do not update if simulation has not started
+
     if (decayStarted && !decayOccurred) {
         betaParticle.active = true;
         betaParticle.position.x += betaParticle.velocity.x * deltaTime;
@@ -111,4 +116,5 @@ void BetaDecayMenu::reset() {
     decayStarted = false;
     decayOccurred = false;
     isDragging = false;
+    simulationStarted = false;
 }
