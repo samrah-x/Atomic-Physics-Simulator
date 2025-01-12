@@ -25,6 +25,11 @@ private:
     bool simulationStarted;
     std::unique_ptr<Button> homeButton;
     std::unique_ptr<Button> startButton;
+
+    Texture2D uraniumTexture;
+    Texture2D neutronTexture;
+    Texture2D fragment1Texture;
+    Texture2D fragment2Texture;
 };
 
 

@@ -20,7 +20,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="alphaDecayMenu.cpp" />
-    <ClCompile Include="atom.cpp" />
     <ClCompile Include="betaDecayMenu.cpp" />
     <ClCompile Include="button.cpp" />
     <ClCompile Include="chainRxnMenu.cpp" />
@@ -30,7 +29,6 @@
     <ClCompile Include="gammaDecayMenu.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mainMenu.cpp" />
-    <ClCompile Include="neutron.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="graphics\alpha.png" />
@@ -50,7 +48,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="alphaDecayMenu.hpp" />
-    <ClInclude Include="atom.hpp" />
     <ClInclude Include="betaDecayMenu.hpp" />
     <ClInclude Include="button.hpp" />
     <ClInclude Include="chainRxnMenu.hpp" />
@@ -60,7 +57,6 @@
     <ClInclude Include="gammaDecayMenu.hpp" />
     <ClInclude Include="mainMenu.hpp" />
     <ClInclude Include="menu.hpp" />
-    <ClInclude Include="neutron.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

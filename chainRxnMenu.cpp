@@ -2,8 +2,19 @@
 #include "mainMenu.hpp"
 #include <iostream>
 
+
+constexpr float TEXTURE_NSCALE = 0.1f; // Scale factor for the textures
+constexpr float TEXTURE_USCALE = 0.3f; // Scale factor for the textures
+constexpr float TEXTURE_FPSCALE = 0.2f; // Scale factor for the textures
+
 // Constructor for ChainRxnMenu
 ChainRxnMenu::ChainRxnMenu() {
+
+    uraniumTexture = LoadTexture("Graphics/Uranium236.png");
+    neutronTexture = LoadTexture("Graphics/neutron.png");
+    fragment1Texture = LoadTexture("Graphics/Krypton.png");
+    fragment2Texture = LoadTexture("Graphics/Barium.png");
+
     // Initialize atoms and neutrons
     for (int i = 0; i < 2; ++i) {
         Particle uranium = { {300 + i * 300, 300}, {0, 0}, 40.0f, BLUE, true, 0, 0 };
@@ -74,6 +85,24 @@ void ChainRxnMenu::render() {
     int titleX = (screenWidth - textWidth) / 2;
     int titleY = 20;
     DrawText(title, titleX, titleY, fontSize, BLACK);
+
+    // Legend
+    DrawRectangle(320, 460, 650, 130, LIGHTGRAY); // Draw the background rectangle for the legend
+    DrawText("Legend", 580, 480, 30, BLACK); // Draw the heading "Legend"
+
+    // Example: Drawing texture names with their atom names
+    DrawTextureEx(uraniumTexture, { 350, 525 }, 0.0f, TEXTURE_NSCALE, WHITE);
+    DrawText("Uranium", 410, 540, 20, BLACK);
+
+    DrawTextureEx(neutronTexture, { 500, 525 }, 0.0f, TEXTURE_NSCALE, WHITE);
+    DrawText("Neutron", 560, 540, 20, BLACK);
+
+    DrawTextureEx(fragment1Texture, { 650, 525 }, 0.0f, TEXTURE_NSCALE, WHITE);
+    DrawText("Krypton", 710, 540, 20, BLACK);
+
+    DrawTextureEx(fragment2Texture, { 800, 525 }, 0.0f, TEXTURE_NSCALE, WHITE);
+    DrawText("Barium", 860, 540, 20, BLACK);
+
 
     // Draw buttons
     homeButton->Draw();
